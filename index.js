@@ -201,3 +201,59 @@
  */
 
 /**----------------------------------------------------------------------------------------------------------------------------------- */
+
+// function ipsBetween(start, end) {
+//   return (
+//     end.split`.`.reduce(
+//       (acc, num, index) => (acc += num * Math.pow(256, 3 - index)),
+//       0
+//     ) -
+//     start.split`.`.reduce(
+//       (acc, num, index) => (acc += num * Math.pow(256, 3 - index)),
+//       0
+//     )
+//   );
+// }
+
+/**
+ * With input "10.0.0.0", "10.0.0.50"  => return   50
+ * With input "10.0.0.0", "10.0.1.0"   => return  256
+ * With input "20.0.0.10", "20.0.1.0"  => return  246
+ */
+
+// console.log(ipsBetween("10.0.0.0", "10.0.0.50"));
+// console.log(ipsBetween("10.0.0.0", "10.0.1.0"));
+// console.log(ipsBetween("20.0.0.10", "20.0.1.0"));
+
+/**----------------------------------------------------------------------------------------------------------------------------------- */
+
+function topThreeWords(text) {
+  return Object.entries(
+    text
+      .toLowerCase()
+      .replace(/[^a-zA-Z0-9']+/g, " ")
+      .trim()
+      .split(" ")
+      .filter(Boolean)
+      .reduce((w, word) => {
+        w[word] ? (w[word] += 1) : (w[word] = 1);
+        return w;
+      }, {})
+  )
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 3)
+    .map((el) => el[0]);
+}
+
+console.log(
+  topThreeWords(
+    "In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An olla of rather more beef than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, made away with three-quarters of his income."
+  )
+); // ["a", "of", "on"]
+
+console.log(topThreeWords("  //wont won't won't")); // ["won't", "wont"]
+console.log(topThreeWords("  , e   .. ")); // ['e']
+console.log(topThreeWords("  ...  ")); // []
+console.log(topThreeWords("  '  ")); // [] --- ????
+
+// https://www.codewars.com/kata/51e056fe544cf36c410000fb/train/javascript
