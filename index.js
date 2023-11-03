@@ -227,33 +227,35 @@
 
 /**----------------------------------------------------------------------------------------------------------------------------------- */
 
-function topThreeWords(text) {
-  return Object.entries(
-    text
-      .toLowerCase()
-      .replace(/[^a-zA-Z0-9']+/g, " ")
-      .trim()
-      .split(" ")
-      .filter(Boolean)
-      .reduce((w, word) => {
-        w[word] ? (w[word] += 1) : (w[word] = 1);
-        return w;
-      }, {})
-  )
-    .sort((a, b) => b[1] - a[1])
-    .slice(0, 3)
-    .map((el) => el[0]);
-}
+// function topThreeWords(text) {
+//   return Object.entries(
+//     text
+//       .toLowerCase()
+//       .replace(/[^a-zA-Z0-9']+/g, " ")
+//       .trim()
+//       .split(" ")
+//       .filter((w) => w !== "" && w !== "'")
+//       .reduce((w, word) => {
+//         w[word] ? (w[word] += 1) : (w[word] = 1);
+//         return w;
+//       }, {})
+//   )
+//     .sort((a, b) => b[1] - a[1])
+//     .slice(0, 3)
+//     .map((el) => el[0]);
+// }
 
-console.log(
-  topThreeWords(
-    "In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An olla of rather more beef than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, made away with three-quarters of his income."
-  )
-); // ["a", "of", "on"]
+// console.log(
+//   topThreeWords(
+//     "In a village of La Mancha, the name of which I have no desire to call to mind, there lived not long since one of those gentlemen that keep a lance in the lance-rack, an old buckler, a lean hack, and a greyhound for coursing. An olla of rather more beef than mutton, a salad on most nights, scraps on Saturdays, lentils on Fridays, and a pigeon or so extra on Sundays, made away with three-quarters of his income."
+//   )
+// ); // ["a", "of", "on"]
 
-console.log(topThreeWords("  //wont won't won't")); // ["won't", "wont"]
-console.log(topThreeWords("  , e   .. ")); // ['e']
-console.log(topThreeWords("  ...  ")); // []
-console.log(topThreeWords("  '  ")); // [] --- ????
+// console.log(topThreeWords("  //wont won't won't")); // ["won't", "wont"]
+// console.log(topThreeWords("  , e   .. ")); // ['e']
+// console.log(topThreeWords("  ...  ")); // []
+// console.log(topThreeWords("  '  ")); // []
 
 // https://www.codewars.com/kata/51e056fe544cf36c410000fb/train/javascript
+
+/**----------------------------------------------------------------------------------------------------------------------------------- */
